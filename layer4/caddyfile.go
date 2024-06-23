@@ -21,16 +21,15 @@ func init() {
 
 // parseLayer4 sets up the "layer4" global option from Caddyfile tokens. Syntax:
 //
-//   layer4 {
-//       <listens...> {
-//           l4echo
-//       }
+//	layer4 {
+//	    <listens...> {
+//	        l4echo
+//	    }
 //
-//       <listens...> {
-//           l4proxy [<options...>]
-//       }
-//   }
-//
+//	    <listens...> {
+//	        l4proxy [<options...>]
+//	    }
+//	}
 func parseLayer4(d *caddyfile.Dispenser, _ interface{}) (interface{}, error) {
 	app := &layer4.App{Servers: make(map[string]*layer4.Server)}
 
@@ -100,11 +99,10 @@ func parseTLS(_ *caddyfile.Dispenser) (*l4tls.Handler, error) {
 
 // parseProxyProtocol sets up a "proxy_protocol" handler from Caddyfile tokens. Syntax:
 //
-//   proxy_protocol {
-//       timeout <duration>
-//       allow   <cidrs...>
-//   }
-//
+//	proxy_protocol {
+//	    timeout <duration>
+//	    allow   <cidrs...>
+//	}
 func parseProxyProtocol(d *caddyfile.Dispenser) (*l4proxyprotocol.Handler, error) {
 	h := new(l4proxyprotocol.Handler)
 
@@ -142,25 +140,24 @@ func parseProxyProtocol(d *caddyfile.Dispenser) (*l4proxyprotocol.Handler, error
 
 // parseL4proxy sets up a "proxy" handler from Caddyfile tokens. Syntax:
 //
-//   proxy [<upstreams...>] {
-//       # backends
-//       to <upstreams...>
-//   	 ...
+//	proxy [<upstreams...>] {
+//	    # backends
+//	    to <upstreams...>
+//		 ...
 //
-//       # load balancing
-//       lb_policy       <name> [<options...>]
-//       lb_try_duration <duration>
-//       lb_try_interval <interval>
+//	    # load balancing
+//	    lb_policy       <name> [<options...>]
+//	    lb_try_duration <duration>
+//	    lb_try_interval <interval>
 //
-//       # active health checking
-//       health_port     <port>
-//       health_interval <interval>
-//       health_timeout  <duration>
+//	    # active health checking
+//	    health_port     <port>
+//	    health_interval <interval>
+//	    health_timeout  <duration>
 //
-//       # sending the PROXY protocol
-//       proxy_protocol <version>
-//   }
-//
+//	    # sending the PROXY protocol
+//	    proxy_protocol <version>
+//	}
 func parseProxy(d *caddyfile.Dispenser) (*l4proxy.Handler, error) {
 	h := new(l4proxy.Handler)
 
